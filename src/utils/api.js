@@ -78,7 +78,33 @@ class Api {
     })
     .then(this._handleResponse)
   }
+
+  signup(singupPayload) {
+    return fetch(`${this._baseUrl}/signup`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify(singupPayload),
+    })
+    .then(this._handleResponse)
+  }
+
+  signin(signinPayload) {
+    return fetch(`${this._baseUrl}/signin`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify(signinPayload),
+    })
+    .then(this._handleResponse)
+  }
 }
+
+export const authApi = new Api({
+  baseUrl: "https://auth.nomoreparties.co",
+  headers: {
+    "Content-Type": "application/json",
+    authorization: `Bearer ${localStorage.getItem("jwt")}`,
+  },
+});
 
 export const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-37',
