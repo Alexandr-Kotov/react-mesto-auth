@@ -16,14 +16,14 @@ export function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, card
           key={`card${card._id}`}
         />
       ));
-    }
+  }
   };
   
   return(
     <main className="main">
       <section className="profile">
         <div className="profile__container">
-          <img className="profile__avatar" src={currentUserContext?.avatar} />
+          <img className="profile__avatar" src={currentUserContext?.avatar} alt="Фото профиля" />
           <div className="profile__avatar-owner" onClick={onEditAvatar}></div>
         </div>
         <div className="profile__info">

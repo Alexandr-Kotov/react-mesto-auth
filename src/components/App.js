@@ -11,7 +11,7 @@ import { EditAvatarPopup } from "./EditAvatarPopup";
 import { AddPlacePopup } from "./AddPlacePopup";
 import { InfoPopup } from "./InfoPopup";
 import React, { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function App() {
@@ -77,20 +77,14 @@ function App() {
       })
       .catch((err) => console.log(err));
 
-  const closeAllPopups = (e) => {
-    if (
-      e.type === "keydown" ||
-      e.target.classList.contains("popup_opened") ||
-      e.target.classList.contains("popup__close")
-    ) {
+  const closeAllPopups = () => {
       setIsAddPlacePopupOpen(false);
       setIsEditAvatarPopupOpen(false);
       setIsEditProfilePopupOpen(false);
       setSelectedCard(null);
       setErrorPopupOpen(false);
       setSuccessPopupOpen(false);
-    }
-  };
+    };
 
   const handleUserUpdate = (user) =>
     api
@@ -155,6 +149,7 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <Header onLogoutClick={handleLogout} />
         <Routes>
+          <Route path="*" element={<Navigate to={{ isLoggedIn: false } ? "/" : "/sign-in"} />} />
           <Route path="/sign-in" element={<Login onSubmit={handleLogin} />} />
           <Route path="/sign-up" element={<Register onSubmit={handleRegistration} />} />
           <Route

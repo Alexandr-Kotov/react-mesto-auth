@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { PopupWithForm } from "./PopupWithForm";
 
 export const AddPlacePopup = ({ isOpen, onClose, onAddCard }) => {
@@ -14,14 +14,17 @@ export const AddPlacePopup = ({ isOpen, onClose, onAddCard }) => {
     }
   };
 
+  React.useEffect(() => {
+    setName('')
+    setLink('')
+  }, [isOpen])
+
   const submitHandler = (e) => {
     e.preventDefault();
     onAddCard({
       name,
       link,
     });
-    setName("");
-    setLink("");
   };
 
   return (
