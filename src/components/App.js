@@ -81,7 +81,7 @@ function App() {
     if (
       e.type === 'keydown' ||
       e.target.classList.contains('popup_opened') ||
-      e.target.classList.contains('popup__close-button')
+      e.target.classList.contains('popup__close')
     ) {
       setIsAddPlacePopupOpen(false);
       setIsEditAvatarPopupOpen(false);
@@ -90,7 +90,7 @@ function App() {
       setSuccessPopupOpen(false);
       setSelectedCard(null);
     }
-  };
+  };;
 
   const handleUserUpdate = (user) =>
     api
